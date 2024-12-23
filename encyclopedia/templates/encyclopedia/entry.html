@@ -1,0 +1,44 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block css %}
+    <style>
+        
+        .rectangular-button {
+            
+            color: black;
+           
+            padding: 5px 15px;
+            
+            border-radius: 5px;
+
+            border: 2px solid black;
+           
+            cursor: pointer;
+            
+            text-align: center;
+            
+            display: inline-block;
+            
+            transition: background-color 0.3s ease;
+            
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <p>{{ message | safe }}</p>
+    <form action="{% url 'encyclopedia:edit' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="entry_title" value="{{title}}">
+        <input type="submit" value="Edit" class="rectangular-button">
+
+    </form>
+
+{% endblock %}
